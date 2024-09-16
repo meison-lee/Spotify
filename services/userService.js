@@ -3,9 +3,14 @@ const db = require('../db');
 
 // Function to get all users
 const getUsers = async () => {
-  const query = "SELECT * FROM users";
-  const result = await db.query(query);
-  return result.rows;
+  try{
+    const query = "SELECT * FROM users";
+    const result = await db.query(query);
+    return result.rows;
+  }
+  catch(err){
+    throw new Error(err);
+  }
 }
 
 // Function to create a user

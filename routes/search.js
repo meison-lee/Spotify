@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {getUsers } = require('../model/userModel');
+const {getUsers } = require('../services/userService');
 const db = require('../db');
 // const searchController = require('../controllers/searchController');
 
