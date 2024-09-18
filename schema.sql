@@ -3,7 +3,7 @@ CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
 CREATE TABLE IF NOT EXISTS users (
     userID UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    username VARCHAR(50) NOT NULL,
+    username VARCHAR(50) UNIQUE NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS albums (
     albumID UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     artistID UUID REFERENCES artists(artistID) ON DELETE CASCADE,
     album_name VARCHAR(50) NOT NULL,
-    album_artwork VARCHAR(100) NOT NULL, -- URL to the album artwork
+    album_artwork VARCHAR(100) , -- URL to the album artwork
     release_date DATE NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -27,10 +27,10 @@ CREATE TABLE IF NOT EXISTS songs (
     songID UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     song_name VARCHAR(50) NOT NULL,
     song_length INT NOT NULL, -- in seconds
-    song_url VARCHAR(100) NOT NULL, -- URL to the song
-    song_artwork VARCHAR(100) NOT NULL, -- URL to the song artwork
-    albumID INT REFERENCES albums(albumID) ON DELETE CASCADE,
-    artistID UUID REFERENCES artists(artistID) ON DELETE CASCADE,
+    song_url VARCHAR(100) , -- URL to the song
+    song_artwork VARCHAR(100) , -- URL to the song artwork
+    albumID UUID REFERENCES albums(albumID) ON DELETE CASCADE,
+    artistID UUID REFERENCES artists(artistID) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS playlists (

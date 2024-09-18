@@ -1,9 +1,10 @@
 const express = require('express');
 const app = express();
-const searchRoutes = require('./routes/search');
-const playRoutes = require('./routes/play');
 const userRoutes = require('./routes/user');
 const artistRoutes = require('./routes/artist')
+const albumRoutes = require('./routes/album');
+const searchRoutes = require('./routes/search');
+const playRoutes = require('./routes/play');
 
 
 // Middleware
@@ -11,8 +12,9 @@ app.use(express.json());  // To parse JSON body
 
 // Routes
 app.use('/user', userRoutes);
-app.use('/search', searchRoutes);
+app.use('/album', albumRoutes);
 app.use('/artist', artistRoutes)
+app.use('/search', searchRoutes);
 app.use('/play', playRoutes);
 
 // Server Setup

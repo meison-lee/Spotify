@@ -1,35 +1,42 @@
 const albumService = require('../services/albumService');
 
 const createAlbum = async (req, res) => {
-  // try {
-  //   const artistID = req.params.id;
-  //   const { album_name, release_date } = req.body;
-  //   const result = await artistService.createAlbum(artistID, album_name, release_date);
-  //   res.status(201).send('Album created');
-  // } catch (error) {
-  //   console.error(error);
-  //   res.status(500).send('Internal Server Error');
-  // }
+  try {
+
+    const { artist_name, album_name, release_date } = req.body;
+    const result = await albumService.createAlbum(artist_name, album_name, release_date);
+    res.status(201).send({msg:'Album created', result});
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
 }
 
-const getAlbums = async (req, res) => {
-  // try {
-  //   const artistID = req.params.id;
-  //   const result = await artistService.getAlbums(artistID);
-  //   res.status(200).send(result);
-  // } catch (error) {
-  //   console.error(error);
-  //   res.status(500).send('Internal Server Error');
-  // }
+const getAlbum = async (req, res) => {
+  try {
+    const albumID = req.params.albumID;
+    const result = await albumService.getAlbum(albumID);
+    res.status(200).send(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
 }
 
 const deleteAlbum = async (req, res) => {
-  // try {
-  //   const id = req.params.id;
-  //   const result = await artistService.deleteArtist(id);
-  //   res.status(200).send('Artist deleted');
-  // } catch (error) {
-  //   console.error(error);
-  //   res.status(500).send('Internal Server Error');
-  // }
+  try {
+    const albumID = req.params.albumID;
+    const result = await albumService.deleteArtist(albumID);
+    res.status(200).send('Artist deleted');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
 }
+
+
+module.exports = {
+  createAlbum,
+  getAlbum,
+  deleteAlbum,
+};
