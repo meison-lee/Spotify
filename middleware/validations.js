@@ -1,4 +1,4 @@
-const { body, validationResult } = require('express-validator');
+const { body, param, validationResult } = require('express-validator');
 
 // Middleware for validating user input
 const validateUsernameEmail = [
@@ -22,8 +22,24 @@ const validateUsernameEmail = [
   }
 ];
 
+const validateEmail = [
+  body('email')
+    .isEmail()
+    .withMessage('Invalid email')
+    .escape(),
+
+  // Validation result handler
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    next(); // Proceed to the controller if validation passes
+  }
+];
+
 const validateUUID = [
-  body('id')
+  param('id')
     .isUUID()
     .withMessage('Invalid id')
     .escape(),  // Escapes HTML characters
@@ -36,4 +52,4 @@ const validateUUID = [
   }
 ]
 
-module.exports = { validateUsernameEmail, validateUUID };
+module.exports = { validateEmail, validateUsernameEmail, validateUUID };

@@ -9,11 +9,11 @@ CREATE TABLE IF NOT EXISTS users (
     user_playlists INTEGER[] DEFAULT '{}'
 );
 CREATE TABLE IF NOT EXISTS artists (
-    artistID UUID PRIMARY KEY,
+    artistID UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     artist_name VARCHAR(50) NOT NULL,
-    artist_email VARCHAR(100) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    artist_albums INTEGER[] DEFAULT '{}'
+    albums INTEGER[] DEFAULT '{}'
 );
 
 CREATE TABLE IF NOT EXISTS albums (
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS albums (
     artistID INT NOT NULL,
     album_name VARCHAR(50) NOT NULL,
     album_artwork VARCHAR(100) NOT NULL, -- URL to the album artwork
-    album_release_date DATE NOT NULL
+    release_date DATE NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS songs (

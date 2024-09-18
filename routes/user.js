@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
 const {validateUsernameEmail, validateUUID} = require('../middleware/validations');
-const {body, validationResult} = require('express-validator');
 
 
 
