@@ -23,12 +23,12 @@ CREATE TABLE IF NOT EXISTS albums (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS songs (
-    songID UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    song_name VARCHAR(50) NOT NULL,
-    song_length INT NOT NULL, -- in seconds
-    song_url VARCHAR(100) , -- URL to the song
-    song_artwork VARCHAR(100) , -- URL to the song artwork
+CREATE TABLE IF NOT EXISTS tracks (
+    trackID UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    track_name VARCHAR(50) NOT NULL,
+    track_length INT NOT NULL, -- in seconds
+    track_url VARCHAR(100) , -- URL to the track
+    track_artwork VARCHAR(100) , -- URL to the track artwork
     albumID UUID REFERENCES albums(albumID) ON DELETE CASCADE,
     artistID UUID REFERENCES artists(artistID) ON DELETE CASCADE
 );
@@ -40,10 +40,10 @@ CREATE TABLE IF NOT EXISTS playlists (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS playlist_song (
+CREATE TABLE IF NOT EXISTS playlist_track (
     playlistID UUID REFERENCES playlists(playlistID) ON DELETE CASCADE,
-    songID UUID REFERENCES songs(songID) ON DELETE CASCADE,
-    PRIMARY KEY (playlistID, songID)
+    trackID UUID REFERENCES tracks(trackID) ON DELETE CASCADE,
+    PRIMARY KEY (playlistID, trackID)
 );
 
 CREATE TABLE IF NOT EXISTS user_plalist (

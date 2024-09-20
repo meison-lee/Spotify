@@ -14,8 +14,8 @@ app.use(express.json());  // To parse JSON body
 app.use('/user', userRoutes);
 app.use('/album', albumRoutes);
 app.use('/artist', artistRoutes)
-app.use('/search', searchRoutes);
 app.use('/play', playRoutes);
+app.use('/search', searchRoutes);
 
 // Server Setup
 const PORT = process.env.PORT || 3000;

@@ -17,7 +17,7 @@ const getAlbum = async (albumID) => {
 // Function to create a album
 const createAlbum = async (artist_name, album_name, release_date) => {
   try {
-    let query = "SELECT artistID FROM artists WHERE LOWER(artist_name) = LOWER($1)";
+    let query = "SELECT artistID FROM artists WHERE artist_name = $1";
     let result = await db.query(query, [artist_name]);
 
     let artistID;
