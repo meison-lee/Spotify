@@ -35,4 +35,18 @@ const deleteUser = async (req, res) => {
   }
 }
 
-module.exports = { getUsers, createUser, deleteUser };
+const checkUser = async (req, res) => {
+  try {
+
+    console.log("in check user route")
+    console.log(req.body)
+    const {username} = req.body;
+    const result = await userService.checkUser(username);
+    res.status(201).send({success:true, msg:"User exist"});
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+}
+
+module.exports = { getUsers, createUser, deleteUser, checkUser };

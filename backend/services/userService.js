@@ -39,10 +39,24 @@ const deleteUser = async (id) => {
   }
 }
 
+const checkUser = async (username) => {
+  try {
+    const query = "SELECT userid FROM users WHERE username = $1"
+    const values = [username]
+    const result = await db.query(query, values)
+    console.log(result.rows)
+    return result.rows
+  }
+  catch (err) {
+    throw new Error(err)
+  }
+}
+
 
 
 module.exports = {
   getUsers,
   createUser,
   deleteUser,
+  checkUser
 };

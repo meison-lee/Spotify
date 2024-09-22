@@ -8,5 +8,6 @@ const {validateUsernameEmail, validateUUID} = require('../middleware/validations
 router.post('/', validateUsernameEmail, userController.createUser);
 router.get('/', userController.getUsers);
 router.delete('/:id', validateUUID, userController.deleteUser);
+router.post('/check', userController.checkUser)
 
 module.exports = router;

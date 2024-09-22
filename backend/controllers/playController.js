@@ -1,6 +1,6 @@
 const playService = require('../services/playService');
 
-const playTtack = async (req, res) => {
+const playTrack = async (req, res) => {
   try {
     const trackId = req.params.trackId;
     const result = await playService.playTrack(trackId);
@@ -12,5 +12,5 @@ const playTtack = async (req, res) => {
 }
 
 module.exports = {
-  playTtack
+  playTrack
 }
