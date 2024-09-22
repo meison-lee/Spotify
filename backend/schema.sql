@@ -46,11 +46,5 @@ CREATE TABLE IF NOT EXISTS playlist_track (
     PRIMARY KEY (playlistID, trackID)
 );
 
-CREATE TABLE IF NOT EXISTS user_plalist (
-    userID UUID REFERENCES users(userID) ON DELETE CASCADE,
-    playlistID UUID REFERENCES playlists(playlistID) ON DELETE CASCADE,
-    PRIMARY KEY (userID, playlistID)
-);
-
 
 

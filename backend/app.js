@@ -6,6 +6,7 @@ const artistRoutes = require('./routes/artist')
 const albumRoutes = require('./routes/album');
 const searchRoutes = require('./routes/search');
 const playRoutes = require('./routes/play');
+const playlistRoutes = require('./routes/playlist');
 
 
 // Middleware
@@ -18,6 +19,7 @@ app.use('/album', albumRoutes);
 app.use('/artist', artistRoutes)
 app.use('/play', playRoutes);
 app.use('/search', searchRoutes);
+app.use('/playlist', playlistRoutes);
 
 // Server Setup
 const PORT = process.env.PORT || 3001;

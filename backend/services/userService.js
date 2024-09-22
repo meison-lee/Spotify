@@ -13,6 +13,19 @@ const getUsers = async () => {
   }
 }
 
+const getIDFromUsername = async (username) => {
+  try{
+    console.log("username: ", username);
+    const query = "SELECT userID FROM users WHERE username = $1";
+    const values = [username];
+    const result = await db.query(query, values);
+    return result.rows[0].userid;
+  }
+  catch(err){
+    throw new Error(err);
+  }
+}
+
 // Function to create a user
 const createUser = async (username, email) => {
   try {
@@ -58,5 +71,6 @@ module.exports = {
   getUsers,
   createUser,
   deleteUser,
-  checkUser
+  checkUser,
+  getIDFromUsername
 };
