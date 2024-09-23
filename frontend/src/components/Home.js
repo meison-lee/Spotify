@@ -81,7 +81,7 @@ const Home = ({ accountType }) => {
                             <div className="playlist-card" key={index}
                             onClick={() => handleClick(playlist.playlistid)}>
                             <img
-                                src={require(`../covers/cover-1.jpg`)}
+                                src={require(`../covers/dark.jpg`)}
                                 alt={`${playlist.playlist_name} cover`}
                                 className="playlist-cover"
                             />

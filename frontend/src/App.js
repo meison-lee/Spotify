@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Auth from './components/Auth';
 import Home from './components/Home';
-import Playlist from './components/Playlist';
+import TrackList from './components/TrackList';
 import AlbumList from './components/AlbumList';
+import Playlist from './components/Playlist';
 import axios from 'axios';
 import './App.css';
 
@@ -69,6 +70,10 @@ function App() {
                     <Route
                         path="/playlist/:playlistId"
                         element={isAuthenticated ? <Playlist /> : <Navigate to="/auth" />}
+                    />
+                    <Route
+                        path="/album/:albumID"
+                        element={isAuthenticated ? <TrackList /> : <Navigate to="/auth" />}
                     />
                 </Routes>
             </div>
