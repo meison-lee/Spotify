@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import MusicPlayer from './MusicPlayer'; // Assuming you have this component
 import MusicUploader from './MusicUploader'; // Assuming you have this component
 import axios from 'axios';
@@ -6,6 +7,7 @@ import axios from 'axios';
 const Home = ({ accountType }) => {
     const [playlists, setPlaylists] = useState([]);
     const [newPlaylistName, setNewPlaylistName] = useState('');
+    const navigate = useNavigate();
 
     // Fetch user's playlists when the component mounts
     useEffect(() => {
@@ -13,7 +15,7 @@ const Home = ({ accountType }) => {
             try {
                 const storedUser = JSON.parse(localStorage.getItem('user')); // Assuming user is stored in localStorage
 
-                const result = await axios.get(`http://localhost:3001/playlist/${storedUser.username}`);
+                const result = await axios.get(`http://localhost:3001/playlist/user/${storedUser.username}`);
 
                 console.log("Playlists:", result.data);
                 setPlaylists(result.data);
@@ -46,6 +48,10 @@ const Home = ({ accountType }) => {
         }
     };
 
+    const handleClick = (playlistId) => {
+        navigate(`/playlist/${playlistId}`);
+    };
+
     return (
         <div className="home-container">
             <h1>Welcome, {accountType === 'artist' ? 'Artist' : 'User'}!</h1>
@@ -72,7 +78,8 @@ const Home = ({ accountType }) => {
                     {playlists && playlists.length > 0 ? (
                         <div className="playlist-grid">
                         {playlists.map((playlist, index) => (
-                            <div className="playlist-card" key={index}>
+                            <div className="playlist-card" key={index}
+                            onClick={() => handleClick(playlist.playlistid)}>
                             <img
                                 src={require(`../covers/cover-1.jpg`)}
                                 alt={`${playlist.playlist_name} cover`}
