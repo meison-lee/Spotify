@@ -15,7 +15,7 @@ const Home = ({ accountType }) => {
             try {
                 const storedUser = JSON.parse(localStorage.getItem('user')); // Assuming user is stored in localStorage
 
-                const result = await axios.get(`http://localhost:3001/playlist/user/${storedUser.username}`);
+                const result = await axios.get(`http://localhost:3001/api/v1/playlist/user/${storedUser.username}`);
 
                 console.log("Playlists:", result.data);
                 setPlaylists(result.data);
@@ -39,7 +39,7 @@ const Home = ({ accountType }) => {
             console.log("stored user", storedUser);
             const data = { playlist_name: newPlaylistName, username: storedUser.username };
 
-            const result = await axios.post('http://localhost:3001/playlist', data);
+            const result = await axios.post('http://localhost:3001/api/v1/playlist', data);
 
             setPlaylists([...playlists, result.data]); // Add new playlist to the list
             setNewPlaylistName(''); // Clear the input after adding

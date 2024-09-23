@@ -15,7 +15,7 @@ function App() {
 
     async function checkUser(storedUser) {
         try {
-            const result = await axios.post('http://localhost:3001/user/check', storedUser);
+            const result = await axios.post('http://localhost:3001/api/v1/user/check', storedUser);
             return result.data;
         } catch (error) {
             console.error("Error checking user:", error);

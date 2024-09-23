@@ -11,7 +11,7 @@ const Auth = ({ onLogin }) => {
 
     // const checkUser = async (username) => {
     //     try {
-    //         const result = await axios.post('http://localhost:3001/user/check', { username });
+    //         const result = await axios.post('http://localhost:3001/api/v1/user/check', { username });
     //         if (result.data && result.data.success) {
     //             console.log("User exists, navigating to home...");
     //             navigate("/home"); // Navigate to home on successful login
@@ -36,7 +36,7 @@ const Auth = ({ onLogin }) => {
         console.log("Checking user during login...");
         navigate("/home")
         try {
-            const result = await axios.post('http://localhost:3001/user/check', { username });
+            const result = await axios.post('http://localhost:3001/api/v1/user/check', { username });
             if (result.data && result.data.success) {
                 console.log(`User ${username} logged in!`);
                 // Store the user in localStorage after successful login

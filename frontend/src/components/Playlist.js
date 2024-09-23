@@ -12,7 +12,7 @@ const Playlist = () => {
     async function fetchPlaylist() {
       try {
         // const storedUser = JSON.parse(localStorage.getItem('user')); // Assuming user is stored in localStorage
-        const response = await axios.get(`http://localhost:3001/playlist/${playlistId}`);
+        const response = await axios.get(`http://localhost:3001/api/v1/playlist/${playlistId}`);
         setPlaylist(response.data.playlist);
         setTracks(response.data.tracks);
       } catch (error) {
