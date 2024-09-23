@@ -29,6 +29,10 @@ CREATE TABLE IF NOT EXISTS tracks (
     track_length INT NOT NULL, -- in seconds
     track_url VARCHAR(100) , -- URL to the track
     track_artwork VARCHAR(100) , -- URL to the track artwork
+    genre VARCHAR(50) NOT NULL,
+    avg_rating DOUBLE PRECISION NOT NULL,
+    number_of_ratings INT NOT NULL,
+    descriptor VARCHAR(50) NOT NULL,
     albumID UUID REFERENCES albums(albumID) ON DELETE CASCADE,
     artistID UUID REFERENCES artists(artistID) ON DELETE CASCADE
 );
