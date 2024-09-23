@@ -1,11 +1,28 @@
 const albumService = require('../services/albumService');
+const trackService = require('../services/trackService');
+const artistService = require('../services/artistService');
 
 const createAlbum = async (req, res) => {
   try {
 
-    const { artist_name, album_name, release_date } = req.body;
-    const result = await albumService.createAlbum(artist_name, album_name, release_date);
-    res.status(201).send({msg:'Album created', result});
+    const { artist_name, album_name, release_date, tracks } = req.body;
+
+    const artistID = await artistService.getIDFromArtistName(artist_name)
+
+    console.log("in create album get artist id",artistID)
+
+    const result = await albumService.createAlbum(artistID, album_name, release_date);
+
+    const albumid = result.albumid
+
+    for (let track of tracks) {
+      const { track_name, track_length } = track;
+      const result = await trackService.createTrack(track_name, track_length, albumid, artistID)
+
+      // console.log(result);
+    }
+
+    res.status(201).send({msg:'Album created'});
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal Server Error');

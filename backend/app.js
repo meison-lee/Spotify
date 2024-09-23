@@ -1,25 +1,14 @@
 const express = require('express');
 const app = express();
 const cors = require('cors')
-const userRoutes = require('./routes/user');
-const artistRoutes = require('./routes/artist')
-const albumRoutes = require('./routes/album');
-const searchRoutes = require('./routes/search');
-const playRoutes = require('./routes/play');
-const playlistRoutes = require('./routes/playlist');
+const routes = require('./routes/index');
 
 
 // Middleware
 app.use(express.json());  // To parse JSON body
 app.use(cors())
 
-// Routes
-app.use('/user', userRoutes);
-app.use('/album', albumRoutes);
-app.use('/artist', artistRoutes)
-app.use('/play', playRoutes);
-app.use('/search', searchRoutes);
-app.use('/playlist', playlistRoutes);
+app.use('/api/v1', routes)
 
 // Server Setup
 const PORT = process.env.PORT || 3001;

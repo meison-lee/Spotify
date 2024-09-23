@@ -22,6 +22,19 @@ const getArtist = async (req, res) => {
   }
 }
 
+const getIDFromArtistName = async (req, res) => {
+  try {
+    const {artist_name} = req.body
+
+    const result = await artistService.getIDFromArtistName(artist_name)
+    res.status(200).send(result)
+  }
+  catch(err) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+}
+
 const deleteArtist = async (req, res) => {
   try {
     const id = req.params.id;
@@ -36,6 +49,7 @@ const deleteArtist = async (req, res) => {
 module.exports = {
   getArtist,
   createArtist,
-  deleteArtist
+  deleteArtist,
+  getIDFromArtistName
 }
 

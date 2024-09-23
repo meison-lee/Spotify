@@ -15,28 +15,15 @@ const getAlbum = async (albumID) => {
 }
 
 // Function to create a album
-const createAlbum = async (artist_name, album_name, release_date) => {
+const createAlbum = async (artistID, album_name, release_date) => {
   try {
-    let query = "SELECT artistID FROM artists WHERE artist_name = $1";
-    let result = await db.query(query, [artist_name]);
-
-    let artistID;
-
-    console.log(result.rows);
-
-    if (result.rows.length > 0) {
-      // Artist exists, retrieve artistID
-      artistID = result.rows[0].artistid;
-    } else {
-      throw new Error("Artist does not exist");
-    }
 
     // Insert new album
-    query = "INSERT INTO albums (artistID, album_name, release_date) VALUES ($1, $2, $3) RETURNING *";
+    const query = "INSERT INTO albums (artistID, album_name, release_date) VALUES ($1, $2, $3) RETURNING *";
     const values = [artistID, album_name, release_date];
-    const albumResult = await db.query(query, values);
+    const result = await db.query(query, values);
 
-    return albumResult.rows[0];
+    return result.rows[0];
   }
   catch (err) {
     throw new Error(err);

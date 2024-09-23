@@ -14,6 +14,19 @@ const getArtist = async (artistID) => {
   }
 }
 
+const getIDFromArtistName = async (artist_name) => {
+  try {
+    const query = "SELECT artistID FROM artists WHERE artist_name = $1";  // Use $1 as a placeholder
+    const values = [artist_name];  // This will bind to $1
+    const result = await db.query(query, values);  // Pass query and values
+    return result.rows[0].artistid;
+
+  }
+  catch (err) {
+    throw new Error(err);
+  }
+}
+
 // Function to create a user
 const createArtist = async (artist_name, email) => {
   try {
@@ -50,4 +63,5 @@ module.exports = {
   getArtist,
   createArtist,
   deleteArtist,
+  getIDFromArtistName
 };
