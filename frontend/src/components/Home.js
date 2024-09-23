@@ -39,7 +39,7 @@ const Home = ({ accountType }) => {
             console.log("stored user", storedUser);
             const data = { playlist_name: newPlaylistName, username: storedUser.username };
 
-            const result = await axios.post('http://localhost:3001/api/v1/playlist', data);
+            const result = await axios.post('http://localhost:3001/playlist', data);
 
             setPlaylists([...playlists, result.data]); // Add new playlist to the list
             setNewPlaylistName(''); // Clear the input after adding

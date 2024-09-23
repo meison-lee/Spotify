@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import TrackList from './TrackList';
 
 const Playlist = () => {
   const { playlistId } = useParams(); // Fetch playlist ID from URL params
@@ -64,7 +65,7 @@ const Playlist = () => {
           </div>
         </>
       ) : (
-        <p>Loading playlist...</p>
+        <TrackList />
       )}
     </div>
   );

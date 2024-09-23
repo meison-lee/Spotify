@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import Auth from './components/Auth';
 import Home from './components/Home';
 import Playlist from './components/Playlist';
+import AlbumList from './components/AlbumList';
 import axios from 'axios';
 import './App.css';
 
@@ -63,7 +64,7 @@ function App() {
                     {/* Protected route for Home, navigates back to auth if not authenticated */}
                     <Route
                         path="/home"
-                        element={isAuthenticated ? <Home /> : <Navigate to="/auth" />}
+                        element={isAuthenticated ? <AlbumList /> : <Navigate to="/auth" />}
                     />
                     <Route
                         path="/playlist/:playlistId"

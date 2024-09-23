@@ -70,3 +70,53 @@ button:hover {
   font-size: 16px;
   text-align: center;
 }
+
+.album-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Space between cards */
+  padding: 20px;
+}
+
+.album-card {
+  background-color: #282828; /* Spotify-like dark background */
+  border-radius: 8px;
+  width: 200px; /* Card width */
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+}
+
+.album-card:hover {
+  transform: scale(1.05); /* Scale on hover */
+}
+
+.album-artwork {
+  width: 100%; /* Make the image responsive */
+  height: auto;
+}
+
+.album-info {
+  padding: 10px;
+  color: white; /* Text color */
+}
+
+.album-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.artist-name {
+  font-size: 14px;
+  color: #b3b3b3; /* Lighter color for artist name */
+}
+
+.release-date {
+  font-size: 12px;
+  color: #b3b3b3; /* Lighter color for release date */
+}
+
+.loading, .error {
+  text-align: center;
+  color: white; /* Color for loading and error messages */
+}
