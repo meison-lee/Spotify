@@ -40,6 +40,16 @@ const getAlbum = async (req, res) => {
   }
 }
 
+const getAllAlbums = async (req, res) => {
+  try {
+    const result = await albumService.getAllAlbums();
+    res.status(200).send(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+}
+
 const deleteAlbum = async (req, res) => {
   try {
     const albumID = req.params.albumID;
@@ -56,4 +66,5 @@ module.exports = {
   createAlbum,
   getAlbum,
   deleteAlbum,
+  getAllAlbums
 };

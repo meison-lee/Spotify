@@ -13,6 +13,20 @@ const createTrack = async (track_name, track_length, albumID, artistID) => {
   }
 }
 
+
+const getAllTracks = async () => {
+  try{
+    const query = "SELECT * FROM tracks";
+
+    const result = await db.query(query);
+    return result.rows;
+  }
+  catch(err){
+    throw new Error(err);
+  }
+}
+
 module.exports = {
   createTrack,
+  getAllTracks
 };

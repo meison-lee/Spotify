@@ -14,6 +14,17 @@ const getAlbum = async (albumID) => {
   }
 }
 
+const getAllAlbums = async () => {
+  try{
+    const query = "SELECT * FROM albums";
+    const result = await db.query(query);
+    return result.rows;
+  }
+  catch(err){
+    throw new Error(err);
+  }
+}
+
 // Function to create a album
 const createAlbum = async (artistID, album_name, release_date) => {
   try {
@@ -48,6 +59,7 @@ const deleteAlbum = async (albumID) => {
 
 module.exports = {
   getAlbum,
+  getAllAlbums,
   createAlbum,
   deleteAlbum,
 };

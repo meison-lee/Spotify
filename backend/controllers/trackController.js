@@ -1,4 +1,4 @@
-const traclService = require('../services/trackService');
+const trackService = require('../services/trackService');
 
 const createTrack = async (req, res) => {
   try {
@@ -11,6 +11,17 @@ const createTrack = async (req, res) => {
   }
 }
 
+const getAllTracks = async (req, res) => {
+  try {
+    const result = await trackService.getAllTracks();
+    res.status(200).send(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+}
+
 module.exports = {
   createTrack,
+  getAllTracks
 };
