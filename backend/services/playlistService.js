@@ -1,6 +1,19 @@
 const db = require('../db');
 
 
+// Function to get playlist by user
+const getPlaylists = async (userID) => {
+  try{
+    const query = "SELECT playlistID, playlist_name FROM playlists WHERE userID = $1";
+    const values = [userID];
+    const result = await db.query(query, values);
+    return result.rows;
+  }
+  catch(err){
+    throw new Error(err);
+  }
+}
+
 // Function to get all users
 const createPlaylist = async (userID, playlist_name) => {
   try{
@@ -14,11 +27,22 @@ const createPlaylist = async (userID, playlist_name) => {
   }
 }
 
-// Function to get playlist by user
-const getPlaylist = async (userID) => {
+const deletePlaylist = async (playlistID) => {
   try{
-    const query = "SELECT playlist_name FROM playlists WHERE userID = $1";
-    const values = [userID];
+    const query = "DELETE FROM playlists WHERE playlistID = $1";
+    const values = [playlistID];
+    const result = await db.query(query, values);
+    return result.rows;
+  }
+  catch(err){
+    throw new Error(err);
+  }
+}
+
+const getTracks = async (playlistID) => {
+  try{
+    const query = "SELECT track_name, track_length, albumID, artistID FROM playlist_track JOIN tracks ON playlist_track.playlistID = playlistID WHERE playlist_track.playlistID = $1";
+    const values = [playlistID];
     const result = await db.query(query, values);
     return result.rows;
   }
@@ -28,19 +52,26 @@ const getPlaylist = async (userID) => {
 }
 
 
-// Function to delete an artist
-const deleteArtist = async (id) => {
-  try {
-
-    // delete the albums first
-    // get the albums from artist and delete them
-
-    // const query = "DELETE FROM artists WHERE userID = $1";
-    // const values = [id];
-    // const result = await db.query(query, values);
-    // return result.rows;
+const addTrack = async (playlistID, trackID) => {
+  try{
+    const query = "INSERT INTO playlist_track (playlistID, trackID) VALUES ($1, $2)";
+    const values = [playlistID, trackID];
+    const result = await db.query(query, values);
+    return result.rows;
   }
-  catch (err) {
+  catch(err){
+    throw new Error(err);
+  }
+}
+
+const removeTrack = async (playlistID, trackID) => {
+  try{
+    const query = "DELETE FROM playlist_track WHERE playlistID = $1 AND trackID = $2";
+    const values = [playlistID, trackID];
+    const result = await db.query(query, values);
+    return result.rows;
+  }
+  catch(err){
     throw new Error(err);
   }
 }
@@ -49,6 +80,8 @@ const deleteArtist = async (id) => {
 
 module.exports = {
   createPlaylist,
-  getPlaylist,
-  deleteArtist
+  getPlaylists,
+  getTracks,
+  addTrack,
+  removeTrack
 };
