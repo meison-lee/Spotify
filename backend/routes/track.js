@@ -5,8 +5,8 @@ const trackController = require('../controllers/trackController');
 
 // create track
 router.post('/', trackController.createTrack);
-// get specific track
-// router.get('/:trackID', trackController.getTrack);
+// get tracks in an album
+router.get('/:albumID', trackController.getTracksByAlbumID);
 // get all tracks
 router.get('/', trackController.getAllTracks);
 // delete specific track

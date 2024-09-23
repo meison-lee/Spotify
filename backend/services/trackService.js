@@ -26,7 +26,20 @@ const getAllTracks = async () => {
   }
 }
 
+const getTracksByAlbumID = async (albumID) => {
+  try{
+    const query = "SELECT t.*, a.*, ar.artist_name FROM tracks t JOIN albums a ON t.albumid = a.albumid JOIN artists ar ON a.artistid = ar.artistid WHERE a.albumID = $1";
+    const values = [albumID];
+    const result = await db.query(query, values);
+    return result.rows;
+  }
+  catch(err){
+    throw new Error(err);
+  }
+}
+
 module.exports = {
   createTrack,
-  getAllTracks
+  getAllTracks,
+  getTracksByAlbumID
 };

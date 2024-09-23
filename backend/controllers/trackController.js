@@ -20,8 +20,19 @@ const getAllTracks = async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 }
+const getTracksByAlbumID = async (req, res) => {
+  try {
+    const {albumID} = req.params;
+    const result = await trackService.getTracksByAlbumID(albumID);
+    res.status(200).send(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+}
 
 module.exports = {
   createTrack,
-  getAllTracks
+  getAllTracks,
+  getTracksByAlbumID
 };
