@@ -2,24 +2,16 @@
 
 ## Overview
 
-This project is a Spotify-like application built with Express.js and PostgreSQL. It allows users to search for songs, play tracks, manage playlists, and more. This backend service provides APIs to handle user and song management, playlist creation, and other functionalities typical of a music streaming service.
+This is a Spotify-like project aims to produce a music platform. The project is built in NodeJS and React, the database is using Postgres and decide to use S3 to keep our audio and images.
+Also, I am looking forward to fetch some data from Spotify's API to make the dataset realistic, my current data is generate by ChatGPT~~
 
 ## Features
 
-- **User Management**: Create and manage user accounts.
-- **Music Search**: Search for songs, albums, and artists.
-- **Play Music**: Play individual tracks.
-- **Playlists**: Create and manage playlists, including adding/removing songs.
-- **Music Upload**: Upload new tracks and associate them with albums and artists.
-
-## Technology Stack
-
-- **Backend Framework**: [Express.js](https://expressjs.com/)
-- **Database**: [PostgreSQL](https://www.postgresql.org/)
-- **ORM/Database Library**: [pg](https://www.npmjs.com/package/pg)
-- **UUID Generation**: [uuid](https://www.npmjs.com/package/uuid)
-
-## Installation
+- **User Management**: Seperate the user and artist, and they might have different interface. However, I am only working on user's interface right now, and I will soon finish the user login and signup interdace.
+- **Playlists**: Create and add tracks into your playlists, there will be a playlist page.
+- **Albums**: List all Albums.
+- **Play Music**: Play individual tracks. (Showing alert sign right now, and I haven't work on the audio storage currently)
+- **Music Search**: Search for songs, albums, and artists. (Not yet implemented)
 
 ### Prerequisites
 
