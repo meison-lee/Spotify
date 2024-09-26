@@ -1,4 +1,4 @@
-# Spotify-Like Application
+# Spotify
 
 ## Overview
 
@@ -29,7 +29,7 @@ This project is a Spotify-like application built with Express.js and PostgreSQL.
 ### Setup
 
 1. **Clone the repository**:
-   git clone https://github.com/yourusername/spotify-like-app.git
+   git clone https://github.com/yourusername/Spotify.git
    cd Spotify
 2. **Install Dependencies**:
    npm install
