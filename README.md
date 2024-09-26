@@ -13,10 +13,12 @@ Also, I am looking forward to fetch some data from Spotify's API to make the dat
 - **Play Music**: Play individual tracks. (Showing alert sign right now, and I haven't work on the audio storage currently)
 - **Music Search**: Search for songs, albums, and artists. (Not yet implemented)
 
-### Prerequisites
+### Tomorrow's mission
 
-- [Node.js](https://nodejs.org/) (version 14 or later)
-- [PostgreSQL](https://www.postgresql.org/) (version 12 or later)
+1. add playlist cover
+2. navigation bar on top with home, search, logout
+3. signup feature
+4. tidy up the backend code
 
 ### Setup
 
