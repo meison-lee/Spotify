@@ -10,12 +10,25 @@ const Playlist = () => {
 
   useEffect(() => {
     // Fetch the playlist details and tracks from your backend
+
     async function fetchPlaylist() {
       try {
-        // const storedUser = JSON.parse(localStorage.getItem('user')); // Assuming user is stored in localStorage
-        const response = await axios.get(`http://localhost:3001/api/v1/playlist/${playlistId}`);
-        setPlaylist(response.data.playlist);
-        setTracks(response.data.tracks);
+        const response = await axios.get(`http://localhost:3001/api/v1/playlist/${playlistId}/details`);
+
+        console.log("tracks", response.data);
+        console.log("length of tracks", response.data.length);
+
+        if (response.data.length === 0) {
+          console.log("no tracks");
+          const response = await axios.get(`http://localhost:3001/api/v1/playlist/${playlistId}`);
+          console.log("playlist", response.data[0].playlist_name)
+          setPlaylist(response.data[0].playlist_name);
+          setTracks([]);
+        }else {
+          console.log("tracks");
+          setPlaylist(response.data[0].playlist_name);
+          setTracks(response.data);
+        }
       } catch (error) {
         console.error('Failed to fetch playlist data', error);
       }
@@ -30,42 +43,21 @@ const Playlist = () => {
           <div className="playlist-header">
             <img
               src={playlist.cover_url}
-              alt={`${playlist.playlist_name} cover`}
+              alt={`${playlist} cover`}
               className="playlist-cover"
             />
             <div className="playlist-details">
-              <h1>{playlist.playlist_name}</h1>
+              <h1>{playlist}</h1>
               <p>{tracks.length} songs</p>
             </div>
           </div>
 
           <div className="tracks-table">
-            <table>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Title</th>
-                  <th>Artist</th>
-                  <th>Album</th>
-                  <th>Duration</th>
-                </tr>
-              </thead>
-              <tbody>
-                {tracks.map((track, index) => (
-                  <tr key={track.trackID}>
-                    <td>{index + 1}</td>
-                    <td>{track.track_name}</td>
-                    <td>{track.artist_name}</td>
-                    <td>{track.album_name}</td>
-                    <td>{Math.floor(track.track_length / 60)}:{track.track_length % 60 < 10 ? '0' : ''}{track.track_length % 60}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+              <TrackList tracks={tracks} />
           </div>
         </>
       ) : (
-        <TrackList />
+        <div>Loading...</div>
       )}
     </div>
   );

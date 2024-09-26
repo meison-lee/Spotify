@@ -120,3 +120,38 @@ button:hover {
   text-align: center;
   color: white; /* Color for loading and error messages */
 }
+
+/* App.css */
+.sidebar {
+  width: 200px;
+  background-color: #121212;
+  color: white;
+  padding: 20px;
+  height: 100vh;
+}
+
+.sidebar h3 {
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+  cursor: pointer;
+  color: #b3b3b3;
+  transition: color 0.3s;
+}
+
+.sidebar ul li:hover {
+  color: #fff;
+}
+
+.main-content {
+  padding: 20px;
+  flex-grow: 1;
+}

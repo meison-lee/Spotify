@@ -5,6 +5,7 @@ import Home from './components/Home';
 import TrackList from './components/TrackList';
 import AlbumList from './components/AlbumList';
 import Playlist from './components/Playlist';
+import ProtectedLayout from './components/ProtectedLayout';
 import axios from 'axios';
 import './App.css';
 
@@ -50,31 +51,23 @@ function App() {
   };
 
   // Handler for logging out (if needed) and clearing localStorage
-  // const handleLogout = () => {
-  //     setIsAuthenticated(false);
-  //     localStorage.removeItem('isAuthenticated');
-  // };
+  const handleLogout = () => {
+      setIsAuthenticated(false);
+      localStorage.removeItem('isAuthenticated');
+  };
 
     return (
         <Router>
             <div className="App">
                 <Routes>
-                    {/* Route for the login/signup page */}
-                    <Route path="/auth" element={isAuthenticated? <Navigate to="/home"/> : <Auth onLogin={handleLogin} />} />
+                    <Route path="/auth" element={<Auth onLogin={handleLogin} />} />
 
                     {/* Protected route for Home, navigates back to auth if not authenticated */}
-                    <Route
-                        path="/home"
-                        element={isAuthenticated ? <AlbumList /> : <Navigate to="/auth" />}
-                    />
-                    <Route
-                        path="/playlist/:playlistId"
-                        element={isAuthenticated ? <Playlist /> : <Navigate to="/auth" />}
-                    />
-                    <Route
-                        path="/album/:albumID"
-                        element={isAuthenticated ? <TrackList /> : <Navigate to="/auth" />}
-                    />
+                    <Route element={<ProtectedLayout isAuthenticated={isAuthenticated}/>}>
+                        <Route path="/home" element={<AlbumList />} />
+                        <Route path="/playlist/:playlistId" element={<Playlist />} />
+                        <Route path="/album/:albumID" element={<TrackList />} />
+                    </Route>
                 </Routes>
             </div>
         </Router>
