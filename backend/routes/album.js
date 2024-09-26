@@ -8,8 +8,7 @@ router.post('/', albumController.createAlbum);
 // get all albums
 router.get('/', albumController.getAllAlbums);
 // get specific album
-router.get('/:albumID', validateUUID, albumController.getAlbum);
-router.delete('/:albumID', validateUUID, albumController.deleteAlbum);
-// router.post('/release_date', albumController.updateAlbumByReleaseDate);
+router.get('/:albumID', albumController.getAlbum);
+router.delete('/:albumID', albumController.deleteAlbum);
 
 module.exports = router;

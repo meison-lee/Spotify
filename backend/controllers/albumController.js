@@ -32,6 +32,7 @@ const createAlbum = async (req, res) => {
 const getAlbum = async (req, res) => {
   try {
     const albumID = req.params.albumID;
+    console.log("in get album", albumID)
     const result = await albumService.getAlbum(albumID);
     res.status(200).send(result);
   } catch (error) {

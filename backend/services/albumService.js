@@ -4,6 +4,8 @@ const db = require('../db');
 // Function to get all album
 const getAlbum = async (albumID) => {
   try{
+
+    console.log("in get album", albumID)
     const query = "SELECT * FROM albums WHERE albumID = $1";
     const values = [albumID];
     const result = await db.query(query, values);
