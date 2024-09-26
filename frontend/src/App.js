@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Auth from './components/Auth';
-import Home from './components/Home';
-import TrackList from './components/TrackList';
 import AlbumList from './components/AlbumList';
+import Home from './components/Home';
 import Playlist from './components/Playlist';
 import ProtectedLayout from './components/ProtectedLayout';
 import axios from 'axios';
@@ -51,10 +50,10 @@ function App() {
   };
 
   // Handler for logging out (if needed) and clearing localStorage
-  const handleLogout = () => {
-      setIsAuthenticated(false);
-      localStorage.removeItem('isAuthenticated');
-  };
+//   const handleLogout = () => {
+//       setIsAuthenticated(false);
+//       localStorage.removeItem('isAuthenticated');
+//   };
 
     return (
         <Router>
@@ -64,9 +63,9 @@ function App() {
 
                     {/* Protected route for Home, navigates back to auth if not authenticated */}
                     <Route element={<ProtectedLayout isAuthenticated={isAuthenticated}/>}>
-                        <Route path="/home" element={<AlbumList />} />
+                        <Route path="/" element={<Home />} />
                         <Route path="/playlist/:playlistId" element={<Playlist />} />
-                        <Route path="/album/:albumID" element={<TrackList />} />
+                        <Route path="/album/:albumID" element={<AlbumList />} />
                     </Route>
                 </Routes>
             </div>

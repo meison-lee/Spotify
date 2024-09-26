@@ -4,17 +4,14 @@ import axios from 'axios'
 
 const Auth = ({ onLogin }) => {
     const [username, setUsername] = useState('');
-    // const [password, setPassword] = useState('');
-    // const [isSignUp, setIsSignUp] = useState(true);
     const navigate = useNavigate();
-    // console.log("Navigate function: ", navigate);
 
     const checkUser = async (username) => {
         try {
             const result = await axios.post('http://localhost:3001/api/v1/user/check', { username });
             if (result.data && result.data.success) {
                 console.log("User exists, navigating to home...");
-                navigate("/home"); // Navigate to home on successful login
+                navigate("/"); // Navigate to home on successful login
             } else {
                 console.log("User does not exist");
             }
@@ -41,8 +38,7 @@ const Auth = ({ onLogin }) => {
                 // Store the user in localStorage after successful login
                 localStorage.setItem('user', JSON.stringify({ username }));
                 onLogin()
-                navigate("/home");
-                console.log("after navigation what the fuck")
+                navigate("/");
             } else {
                 alert(result.data.msg)
                 console.log(result.data.msg)
