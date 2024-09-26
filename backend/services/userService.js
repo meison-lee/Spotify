@@ -15,11 +15,12 @@ const getUsers = async () => {
 
 const getIDFromUsername = async (username) => {
   try{
-    console.log("username: ", username);
+    console.log("in getIDFromUsername")
     const query = "SELECT userID FROM users WHERE username = $1";
     const values = [username];
     const result = await db.query(query, values);
-    return result.rows[0].userid;
+    console.log(result)
+    return result.rows[0];
   }
   catch(err){
     throw new Error(err);

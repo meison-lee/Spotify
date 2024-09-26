@@ -11,7 +11,9 @@ router.post('/', playlistController.createPlaylist);
 router.delete('/:playlistID', playlistController.deletePlaylist);
 
 // get tracks from a playlist
-router.get('/:playlistID', playlistController.getTracks);
+router.get('/:playlistID', playlistController.getPlaylist);
+// get tracks from a playlist
+router.get('/:playlistID/details', playlistController.getTracks);
 // add tracks to a playlist
 router.post('/:playlistID', playlistController.addTrack);
 // remove a track from a playlist

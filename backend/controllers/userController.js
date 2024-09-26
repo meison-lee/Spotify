@@ -38,10 +38,11 @@ const deleteUser = async (req, res) => {
 const checkUser = async (req, res) => {
   try {
 
-    console.log("in check user route")
-    console.log(req.body)
     const {username} = req.body;
     const result = await userService.checkUser(username);
+    if(result.length === 0) {
+      return res.status(200).send({success:false, msg:"User does not exist"});
+    }
     res.status(201).send({success:true, msg:"User exist"});
   } catch (error) {
     console.error(error);

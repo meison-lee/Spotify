@@ -9,11 +9,23 @@ const getPlaylists = async (req, res) => {
     const { username } = req.params;
 
     console.log("from params username: ", username);
-    const userID = await userService.getIDFromUsername(username);
-    console.log("userID: ", userID);
-    const result = await playlistService.getPlaylists(userID);
+    const {userid} = await userService.getIDFromUsername(username);
+    console.log("userID: ", userid);
+    const result = await playlistService.getPlaylists(userid);
 
     console.log(result);
+    res.status(200).json(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to fetch tracks' });
+  }
+}
+
+const getPlaylist = async (req, res) => {
+  try {
+    const { playlistID } = req.params;
+    const result = await playlistService.getPlaylist(playlistID);
+    console.log("get playlist ",result);
     res.status(200).json(result);
   } catch (error) {
     console.error(error);
@@ -51,8 +63,8 @@ const deletePlaylist = async (req, res) => {
 const getTracks = async (req, res) => {
   try {
     const { playlistID } = req.params;
-    console.log("playlistID: ", playlistID);
     const result = await playlistService.getTracks(playlistID);
+    console.log("result ", result);
     res.status(200).json(result);
   } catch (error) {
     console.error(error);
@@ -64,7 +76,7 @@ const addTrack = async (req, res) => {
   try {
     const { playlistID } = req.params;
     const { trackID } = req.body;
-    const result = await playlistService.addTracks(playlistID, trackID);
+    const result = await playlistService.addTrack(playlistID, trackID);
     res.status(200).json(result);
   } catch (error) {
     console.error(error);
@@ -84,4 +96,4 @@ const removeTrack = async (req, res) => {
   }
 }
 
-module.exports = { createPlaylist, getPlaylists, getTracks, addTrack, removeTrack, deletePlaylist };
+module.exports = { createPlaylist, getPlaylists, getTracks, getPlaylist, addTrack, removeTrack, deletePlaylist };

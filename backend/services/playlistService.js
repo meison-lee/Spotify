@@ -4,9 +4,11 @@ const db = require('../db');
 // Function to get playlist by user
 const getPlaylists = async (userID) => {
   try{
+    console.log("in getPlaylists")
     const query = "SELECT playlistID, playlist_name FROM playlists WHERE userID = $1";
     const values = [userID];
     const result = await db.query(query, values);
+    console.log(result)
     return result.rows;
   }
   catch(err){
@@ -41,7 +43,23 @@ const deletePlaylist = async (playlistID) => {
 
 const getTracks = async (playlistID) => {
   try{
-    const query = "SELECT track_name, track_length, albumID, artistID FROM playlist_track JOIN tracks ON playlist_track.playlistID = playlistID WHERE playlist_track.playlistID = $1";
+    console.log("in getTracks playlistID: ", playlistID)
+    const query = `
+      SELECT
+        *
+      FROM
+        playlist_track pt
+      JOIN
+        tracks t ON pt.trackid = t.trackid
+      JOIN
+        playlists p ON pt.playlistid = p.playlistid  -- Join with the playlists table
+      JOIN
+        artists a ON t.artistid=a.artistid
+      JOIN
+        albums album ON t.albumid=album.albumid
+      WHERE
+        pt.playlistID = $1;
+    `;
     const values = [playlistID];
     const result = await db.query(query, values);
     return result.rows;
@@ -51,6 +69,17 @@ const getTracks = async (playlistID) => {
   }
 }
 
+const getPlaylist = async (playlistID) => {
+  try{
+    const query = "SELECT * FROM playlists WHERE playlistid = $1";
+    const values = [playlistID];
+    const result = await db.query(query, values);
+    return result.rows;
+  }
+  catch(err){
+    throw new Error(err);
+  }
+}
 
 const addTrack = async (playlistID, trackID) => {
   try{
@@ -82,6 +111,7 @@ module.exports = {
   createPlaylist,
   getPlaylists,
   getTracks,
+  getPlaylist,
   addTrack,
   removeTrack
 };
