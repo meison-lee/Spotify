@@ -16,9 +16,8 @@ Also, I am looking forward to fetch some data from Spotify's API to make the dat
 ### Tomorrow's mission
 
 1. add playlist cover
-2. navigation bar on top with home, search, logout
-3. signup feature
-4. tidy up the backend code
+2. edit playlist feature
+3. tidy up the backend code
 
 ### Setup
 
