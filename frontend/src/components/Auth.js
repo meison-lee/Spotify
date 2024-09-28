@@ -62,11 +62,11 @@ const Auth = ({ onLogin }) => {
                 onChange={(e) => setUsername(e.target.value)}
             />
             <br />
-            <button onClick={handleAuth}>
+            <button className='login-button' onClick={handleAuth}>
                 Login
             </button>
             <br />
-            <button onClick={handleSignUp}>
+            <button className='login-button' onClick={handleSignUp}>
                 Signup
             </button>
             <br />

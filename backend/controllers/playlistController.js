@@ -36,9 +36,9 @@ const getPlaylist = async (req, res) => {
 const createPlaylist = async (req, res) => {
   try {
     const { username, playlist_name } = req.body;
-    const userID = await userService.getIDFromUsername(username);
-    console.log("userID: ", userID);
-    const result = await playlistService.createPlaylist(userID, playlist_name);
+    const {userid} = await userService.getIDFromUsername(username);
+
+    const result = await playlistService.createPlaylist(userid, playlist_name);
     console.log(result);
     res.status(200).json(result);
   } catch (error) {

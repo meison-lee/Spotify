@@ -34,6 +34,21 @@ const DropdownMenu = ({track}) => {
     }
   };
 
+  const createPlaylist = async () => {
+
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    const playlistName = prompt('Enter a playlist name');
+    if (playlistName.trim() === '') {
+      alert('Please enter a playlist name');
+      return;
+    }
+    const data = {playlist_name: playlistName, username: storedUser.username}
+    console.log(data);
+    const response = await axios.post(`http://localhost:3001/api/v1/playlist`, data);
+    console.log(response);
+    fetchPlaylists();
+  }
+
   // Add the event listener when the dropdown is visible
   useEffect(() => {
     if (isVisible) {
@@ -78,6 +93,14 @@ const DropdownMenu = ({track}) => {
         width: '200px',
       }}
     >
+        <div style={{
+            padding: '5px 0',
+            cursor: 'pointer',
+          }}
+          onClick={createPlaylist}
+          >
+            create a playlist...
+        </div>
         {playlists.map((playlist) => (
         <div
           key={playlist.playlistid}

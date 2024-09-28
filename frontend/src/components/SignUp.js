@@ -59,7 +59,7 @@ function SignupPage() {
           </div>
 
           {/* Submit Button */}
-          <button type="submit">Sign Up</button>
+          <button className='login-button' type="submit">Sign Up</button>
         </form>
       )}
     </div>
