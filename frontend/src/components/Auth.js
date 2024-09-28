@@ -48,6 +48,10 @@ const Auth = ({ onLogin }) => {
         }
     };
 
+    const handleSignUp = ()=>{
+        navigate("/signup");
+    }
+
     return (
         <div className="auth-container">
             <h2>Login</h2>
@@ -60,6 +64,10 @@ const Auth = ({ onLogin }) => {
             <br />
             <button onClick={handleAuth}>
                 Login
+            </button>
+            <br />
+            <button onClick={handleSignUp}>
+                Signup
             </button>
             <br />
         </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Auth from './components/Auth';
+import SignUp from './components/SignUp';
 import AlbumList from './components/AlbumList';
 import Home from './components/Home';
 import Playlist from './components/Playlist';
@@ -60,11 +61,13 @@ function App() {
             <div className="App">
                 <Routes>
                     <Route path="/auth" element={<Auth onLogin={handleLogin} />} />
+                    <Route path="/signup" element={<SignUp />} />
                     <Route element={<ProtectedLayout isAuthenticated={isAuthenticated}/>}>
                         <Route path="/" element={<Home />} />
                         <Route path="/playlist/:playlistId" element={<Playlist />} />
                         <Route path="/album/:albumID" element={<AlbumList />} />
                     </Route>
+                    <Route path="*" element={<Auth onLogin={handleLogin} />} />
                 </Routes>
             </div>
         </Router>
