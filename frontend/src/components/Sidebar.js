@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
   const [playlists, setPlaylists] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,20 +26,38 @@ const Sidebar = () => {
     navigate(`/playlist/${playlistid}`);
   };
 
+  const goToHome = () => {
+    navigate('/');
+  }
+
   return (
-    <div className="sidebar">
-      <h3>Your Playlists</h3>
-      <ul>
-        {playlists.map((playlist) => (
-          <li
+  <div className="sidebar">
+    {/* Home Button */}
+    <button className="home-button" onClick={() => goToHome()}>
+      Home
+    </button>
+
+    {/* Search Bar */}
+    <input
+      type="text"
+      className="search-bar"
+      placeholder="Search playlists..."
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+    />
+    {/* Playlists */}
+    <h3>Your Playlists</h3>
+    <ul>
+      {playlists.map((playlist) => (
+        <li
           key={playlist.playlistid}
           onClick={() => onClickPlaylist(playlist.playlistid)}
-          >
-            {playlist.playlist_name}
-          </li>
-        ))}
-      </ul>
-    </div>
+        >
+          {playlist.playlist_name}
+        </li>
+      ))}
+    </ul>
+  </div>
   );
 };
 

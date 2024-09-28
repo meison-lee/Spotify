@@ -60,8 +60,6 @@ function App() {
             <div className="App">
                 <Routes>
                     <Route path="/auth" element={<Auth onLogin={handleLogin} />} />
-
-                    {/* Protected route for Home, navigates back to auth if not authenticated */}
                     <Route element={<ProtectedLayout isAuthenticated={isAuthenticated}/>}>
                         <Route path="/" element={<Home />} />
                         <Route path="/playlist/:playlistId" element={<Playlist />} />
