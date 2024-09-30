@@ -1,5 +1,8 @@
 # Spotify
 
+check the website here
+http://ec2-44-243-34-58.us-west-2.compute.amazonaws.com:3000/
+
 ## Overview
 
 This is a Spotify-like project aims to produce a music platform. The project is built in NodeJS and React, the database is using Postgres and decide to use S3 to keep our audio and images.
