@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
+const backendURL = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL : 'http://localhost:3001';
 
 const DropdownMenu = ({track}) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -8,7 +9,7 @@ const DropdownMenu = ({track}) => {
 
   const fetchPlaylists = async () => {
     const storedUser = JSON.parse(localStorage.getItem('user'));
-    const response = await axios.get(`http://localhost:3001/api/v1/playlist/user/${storedUser.username}`);
+    const response = await axios.get(backendURL+`/api/v1/playlist/user/${storedUser.username}`);
     const data = response.data;
     setPlaylists(data);
   };
@@ -21,7 +22,7 @@ const DropdownMenu = ({track}) => {
 
   const handleAddToPlaylist = (trackId, playlistId) => {
     console.log(`Adding track ${trackId} to playlist ${playlistId}`);
-    const response = axios.post(`http://localhost:3001/api/v1/playlist/${playlistId}`, {trackID: trackId});
+    const response = axios.post(backendURL+`/api/v1/playlist/${playlistId}`, {trackID: trackId});
     console.log(response);
 
     // Add your add-to-playlist logic here (e.g., axios call to backend)
@@ -44,7 +45,7 @@ const DropdownMenu = ({track}) => {
     }
     const data = {playlist_name: playlistName, username: storedUser.username}
     console.log(data);
-    const response = await axios.post(`http://localhost:3001/api/v1/playlist`, data);
+    const response = await axios.post(backendURL+`/api/v1/playlist`, data);
     console.log(response);
     fetchPlaylists();
   }

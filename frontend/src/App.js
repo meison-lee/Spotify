@@ -9,6 +9,8 @@ import ProtectedLayout from './components/ProtectedLayout';
 import axios from 'axios';
 import './App.css';
 
+const backendURL = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL : 'http://localhost:3001';
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -18,7 +20,7 @@ function App() {
 
     async function checkUser(storedUser) {
         try {
-            const result = await axios.post('http://localhost:3001/api/v1/user/check', storedUser);
+            const result = await axios.post(backendURL+ '/api/v1/user/check', storedUser);
             return result.data;
         } catch (error) {
             console.error("Error checking user:", error);

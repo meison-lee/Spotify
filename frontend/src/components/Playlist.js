@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import TrackList from './TrackList';
+const backendURL = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL : 'http://localhost:3001';
 
 const Playlist = () => {
   const { playlistId } = useParams(); // Fetch playlist ID from URL params
@@ -13,14 +14,14 @@ const Playlist = () => {
 
     async function fetchPlaylist() {
       try {
-        const response = await axios.get(`http://localhost:3001/api/v1/playlist/${playlistId}/details`);
+        const response = await axios.get(backendURL+`/api/v1/playlist/${playlistId}/details`);
 
         console.log("tracks", response.data);
         console.log("length of tracks", response.data.length);
 
         if (response.data.length === 0) {
           console.log("no tracks");
-          const response = await axios.get(`http://localhost:3001/api/v1/playlist/${playlistId}`);
+          const response = await axios.get(backendURL+`/api/v1/playlist/${playlistId}`);
           console.log("playlist", response.data[0].playlist_name)
           setPlaylist(response.data[0].playlist_name);
           setTracks([]);

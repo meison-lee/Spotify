@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
+const backendURL = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL : 'http://localhost:3001';
 
 const Auth = ({ onLogin }) => {
     const [username, setUsername] = useState('');
@@ -8,7 +9,7 @@ const Auth = ({ onLogin }) => {
 
     const checkUser = async (username) => {
         try {
-            const result = await axios.post('http://localhost:3001/api/v1/user/check', { username });
+            const result = await axios.post(backendURL+'/api/v1/user/check', { username });
             if (result.data && result.data.success) {
                 console.log("User exists, navigating to home...");
                 navigate("/"); // Navigate to home on successful login
@@ -31,8 +32,9 @@ const Auth = ({ onLogin }) => {
     const handleAuth = async (e) => {
         e.preventDefault();
         console.log("Checking user during login...");
+        console.log(backendURL)
         try {
-            const result = await axios.post('http://localhost:3001/api/v1/user/check', { username });
+            const result = await axios.post(backendURL+'/api/v1/user/check', { username });
             if (result.data && result.data.success) {
                 console.log(`User ${username} logged in!`);
                 // Store the user in localStorage after successful login

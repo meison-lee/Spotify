@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+const backendURL = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL : 'http://localhost:3001';
 
 const Home = () => {
   const [albums, setAlbums] = useState([]);
@@ -11,7 +12,7 @@ const Home = () => {
   useEffect(() => {
     const fetchAlbums = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/api/v1/album');
+        const response = await axios.get(backendURL+'/api/v1/album');
         const data = response.data;
         console.log("response", response.data);
         setAlbums(data);

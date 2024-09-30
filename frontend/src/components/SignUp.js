@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+const backendURL = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL : 'http://localhost:3001';
 
 function SignupPage() {
   const [username, setUsername] = useState('');
@@ -13,7 +14,7 @@ function SignupPage() {
 
     console.log({ username, email });
     const user = { username, email };
-    const response = await axios.post('http://localhost:3001/api/v1/user', user);
+    const response = await axios.post(backendURL+'/api/v1/user', user);
 
     console.log('User created:', response.data);
     setSubmitted(true); // For demo, indicate that the form was submitted

@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+const backendURL = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL : 'http://localhost:3001';
 
 const Sidebar = () => {
   const [playlists, setPlaylists] = useState([]);
@@ -12,7 +13,7 @@ const Sidebar = () => {
     // Fetch user's playlists (replace with your actual API)
     const fetchPlaylists = async () => {
       const storedUser = JSON.parse(localStorage.getItem('user'));
-      const response = await axios.get(`http://localhost:3001/api/v1/playlist/user/${storedUser.username}`);
+      const response = await axios.get(backendURL+`/api/v1/playlist/user/${storedUser.username}`);
       const data = response.data;
       setPlaylists(data);
     };

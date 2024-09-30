@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import TrackList from './TrackList';
+const backendURL = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL : 'http://localhost:3001';
 
 const AlbumList = () => {
   const { albumID } = useParams(); // Fetch playlist ID from URL params
@@ -14,7 +15,7 @@ const AlbumList = () => {
   const fetchAlbum = async () => {
     try {
       console.log("fetching metadata of Album")
-      const response = await axios.get(`http://localhost:3001/api/v1/album/${albumID}`);
+      const response = await axios.get(backendURL+`/api/v1/album/${albumID}`);
       const data = response.data[0];
       setAlbum(data);
     } catch (err) {
@@ -27,7 +28,7 @@ const AlbumList = () => {
   async function fetchTracks() {
     try {
       console.log("fetching tracks of Album")
-      const response = await axios.get(`http://localhost:3001/api/v1/track/${albumID}`);
+      const response = await axios.get(backendURL+`/api/v1/track/${albumID}`);
       console.log("response", response.data);
       setTracks(response.data);
     } catch (error) {
