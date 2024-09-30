@@ -22,7 +22,7 @@ INSERT INTO albums (album_name, release_date, artistID) VALUES
 ('The Joshua Tree', '1987-03-09', (SELECT artistID FROM artists WHERE artist_name = 'U2')),
 ('Nevermind', '1991-09-24', (SELECT artistID FROM artists WHERE artist_name = 'Nirvana')),
 ('Rumours', '1977-02-04', (SELECT artistID FROM artists WHERE artist_name = 'Fleetwood Mac')),
-('Born to Run', '1975-08-25', (SELECT artistID FROM artists WHERE artist_name = 'Bruce Springsteen'))
+('Born to Run', '1975-08-25', (SELECT artistID FROM artists WHERE artist_name = 'Bruce Springsteen')),
 ('The Wall', '1979-11-30', (SELECT artistID FROM artists WHERE artist_name = 'Pink Floyd'));
 
 
