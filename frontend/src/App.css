@@ -136,8 +136,11 @@ input {
 }
 
 .album-artwork {
-  width: 100%; /* Make the image responsive */
-  height: auto;
+  width: 100%; /* Make the image fill the width of the card */
+  height: 200px; /* Set a fixed height */
+  object-fit: cover; /* Ensure the image covers the entire area without distortion */
+  border-radius: 5px;
+  margin-bottom: 15px; /* Add space between the image and the text */
 }
 
 .album-info {
@@ -209,8 +212,40 @@ input {
 .sidebar ul li:hover {
   color: #fff;
 }
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pushes content to the top and bottom */
+  height: 100vh; /* Full height to fill the screen */
+  padding: 20px;
+  background-color: #333;  /* Sidebar background color */
+  color: white;            /* Text color */
+}
 
-.home-button {
+.search-bar {
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 14px;
+  width: 100%;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  cursor: pointer;
+  padding: 8px;
+  margin: 5px 0;
+}
+
+ul li:hover {
+  background-color: #555; /* Change color on hover */
+}
+
+
+.home-button, .logout-button {
   background-color: #444; /* Button background */
   color: white;
   border: none;
@@ -222,8 +257,14 @@ input {
   font-size: 16px;
 }
 
-.home-button:hover {
+.home-button:hover, .logout-button:hover {
   background-color: #555; /* Change color on hover */
+}
+
+.logout-button {
+  align-self: flex-start; /* Align the logout button to the bottom */
+  margin-top: auto; /* Push the button to the bottom */
+  margin-bottom: 30px; /* Add some space between the button and the bottom */
 }
 
 /* Search Bar Styles */

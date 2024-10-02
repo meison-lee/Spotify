@@ -53,10 +53,10 @@ function App() {
   };
 
   // Handler for logging out (if needed) and clearing localStorage
-//   const handleLogout = () => {
-//       setIsAuthenticated(false);
-//       localStorage.removeItem('isAuthenticated');
-//   };
+  const handleLogout = () => {
+      setIsAuthenticated(false);
+      localStorage.removeItem('isAuthenticated');
+  };
 
     return (
         <Router>
@@ -64,7 +64,7 @@ function App() {
                 <Routes>
                     <Route path="/auth" element={<Auth onLogin={handleLogin} />} />
                     <Route path="/signup" element={<SignUp />} />
-                    <Route element={<ProtectedLayout isAuthenticated={isAuthenticated}/>}>
+                    <Route element={<ProtectedLayout isAuthenticated={isAuthenticated} onLogout={handleLogout}/>}>
                         <Route path="/" element={<Home />} />
                         <Route path="/playlist/:playlistId" element={<Playlist />} />
                         <Route path="/album/:albumID" element={<AlbumList />} />

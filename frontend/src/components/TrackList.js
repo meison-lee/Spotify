@@ -43,17 +43,25 @@ const TrackList = (tracks) => {
             style={{ width: '50px', height: '50px', marginRight: '15px' }}
           />
           {/* Track details */}
-          <div style={{ flexGrow: 1 }}>
-            <div style={{ fontWeight: 'bold' }}>{track.track_name}</div>
-            <div style={{ color: '#555' }}>{track.artist_name}</div>
+          <div style={{ flexGrow: 2, display: 'flex', flexDirection: 'column', marginRight: '15px', width: '200px'}}>
+            <div style={{ fontWeight: 'bold', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              {track.track_name}
+            </div>
+            <div style={{ color: '#555', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              {track.artist_name}
+            </div>
           </div>
           {/* Album */}
-          <div style={{ flexGrow: 1 }}>{track.album_name}</div>
+          <div style={{ flexGrow: 1, textAlign: 'left', marginRight: '15px', width: '150px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            {track.album_name}
+          </div>
           {/* Length */}
-          <div>{`${Math.floor(track.track_length / 60)}:${(track.track_length % 60).toString().padStart(2, '0')}`}</div>
+          <div style={{ minWidth: '50px', textAlign: 'right', width: '50px' }}>
+            {`${Math.floor(track.track_length / 60)}:${(track.track_length % 60).toString().padStart(2, '0')}`}
+          </div>
           {/* Three Dots Menu */}
-          <div style={{ position: 'relative', marginLeft: '15px' }}>
-            <DropdownMenu track={track}/>
+          <div style={{ position: 'relative', marginLeft: '15px', width: '30px' }}>
+            <DropdownMenu track={track} />
           </div>
         </div>
       )): <div>Loading...</div>}

@@ -2,7 +2,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 
 // Layout Component for protected routes
-const ProtectedLayout = ({ isAuthenticated }) => {
+const ProtectedLayout = ({ isAuthenticated, onLogout }) => {
 
   console.log("isAuthenticated", isAuthenticated);
   if (!isAuthenticated) {
@@ -11,7 +11,7 @@ const ProtectedLayout = ({ isAuthenticated }) => {
 
   return (
     <div style={{ display: 'flex', height: '100vh'}}>
-      <Sidebar />
+      <Sidebar onLogout={onLogout}/>
       <div className='Container'>
         <Outlet /> {/* This will render child routes like AlbumList, Playlist, etc. */}
       </div>
