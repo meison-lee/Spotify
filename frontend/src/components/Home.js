@@ -40,7 +40,7 @@ const Home = () => {
       <div className="album-list">
         {albums.map((album) => (
           <div key={album.albumid} className="album-card" onClick={() => handleClick(album.albumid)}>
-              <img className="album-artwork" src={require(`../covers/${album.album_artwork}.jpg`)} alt={`${album.album_name} cover`} />
+              <img className="album-artwork" src={album.album_artwork} alt={`${album.album_name} cover`} />
             <div className="album-info">
               <h2 className="album-name">{album.album_name}</h2>
               <p className="artist-name">{album.artist_name}</p>

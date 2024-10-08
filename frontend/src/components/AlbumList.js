@@ -51,7 +51,7 @@ const AlbumList = () => {
         <>
           <div className="album-header">
             <img
-              src={require(`../covers/${album.album_artwork}.jpg`)}
+              src={"https://example.com/default-album-cover.jpg"}
               alt={`${album.album_name} cover`}
               className="album-cover"
             />

@@ -38,7 +38,7 @@ const TrackList = (tracks) => {
           </button>
           {/* Cover */}
           <img
-            src={require(`../covers/${track.album_artwork}.jpg`)}
+            src={track.album_artwork}
             alt={`${track.track_name} cover`}
             style={{ width: '50px', height: '50px', marginRight: '15px' }}
           />
@@ -57,7 +57,7 @@ const TrackList = (tracks) => {
           </div>
           {/* Length */}
           <div style={{ minWidth: '50px', textAlign: 'right', width: '50px' }}>
-            {`${Math.floor(track.track_length / 60)}:${(track.track_length % 60).toString().padStart(2, '0')}`}
+            {`${Math.floor((track.track_length / 1000) / 60)}:${(Math.floor(track.track_length / 1000) % 60).toString().padStart(2, '0')}`}
           </div>
           {/* Three Dots Menu */}
           <div style={{ position: 'relative', marginLeft: '15px', width: '30px' }}>
