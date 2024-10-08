@@ -1,7 +1,5 @@
 # Spotify
 
-check the website here
-http://ec2-44-243-34-58.us-west-2.compute.amazonaws.com:3000/
 
 ## Overview
 
